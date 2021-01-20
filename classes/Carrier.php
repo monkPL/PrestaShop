@@ -454,7 +454,7 @@ class CarrierCore extends ObjectModel
 						' . Carrier::sqlDeliveryRangeShop('range_price') . '
 					ORDER BY r.`delimiter1` ASC';
             $result = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow($sql);
-            self::$price_by_price2[$cache_key] = (isset($result['price']));
+            self::$price_by_price2[$cache_key] = (isset($result['price']) ? $result['price'] : 0);
         }
 
         $price_by_price = Hook::exec('actionDeliveryPriceByPrice', ['id_carrier' => $id_carrier, 'order_total' => $order_total, 'id_zone' => $id_zone]);
